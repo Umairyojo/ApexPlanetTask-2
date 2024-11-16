@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="contact-container"> 
+  <form action="" class="contact-left">
+    <div class="contact-left-title">
+        <h2>Get in touch</h2>
+        <hr>
+    </div>
+    <input type="text" name="name" placeholder="Your name" class="contact-inputs" required>
+    <input type="email" name="email" placeholder="Your email" class="contact-inputs" required>
+    <textarea name="message" placeholder="Your message" class="contact-inputs"></textarea>
+    <button type="submit">submit <img src="assets/arrow_icon.png"></button>
+   </form>
+    <div class="contact-right">
+        <img src="assets/right_img.png" alt="">
+    </div>
+   </div>
+
+   <script>
+    function validateForm(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const name = document.querySelector('input[name="name"]');
+        const email = document.querySelector('input[name="email"]');
+        const message = document.querySelector('textarea[name="message"]');
+
+        let valid = true;
+        let errorMessage = '';
+
+        // Check if name is empty
+        if (name.value.trim() === '') {
+            valid = false;
+            errorMessage += 'Name is required.\n';
+        }
+
+        // Check if email is empty or invalid
+        if (email.value.trim() === '') {
+            valid = false;
+            errorMessage += 'Email is required.\n';
+        } else {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email.value.trim())) {
+                valid = false;
+                errorMessage += 'Please enter a valid email address.\n';
+            }
+        }
+
+        // Optionally check if message is empty
+        if (message.value.trim() === '') {
+            valid = false;
+            errorMessage += 'Message cannot be empty.\n';
+        }
+
+        // If valid, submit the form
+        if (valid) {
+            alert('Form submitted successfully!');
+            // Here you can add code to actually submit the form, e.g., via AJAX
+            // document.querySelector('form').submit();
+        } else {
+            alert(errorMessage); // Show error messages
+        }
+    }
+</script>
+</body>
+</html>
